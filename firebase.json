@@ -1,0 +1,39 @@
+{
+  "hosting": {
+    "site": "jingle-plan",
+    "public": "dist",
+    "cleanUrls": true,
+    "trailingSlash": true,
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "/downloads/**/*.apk",
+        "headers": [
+          { "key": "Content-Type", "value": "application/vnd.android.package-archive" },
+          { "key": "Content-Disposition", "value": "attachment; filename=\"jingle-plan.apk\"" },
+          { "key": "Cache-Control", "value": "public, max-age=300" },
+          { "key": "X-Content-Type-Options", "value": "nosniff" }
+        ]
+      },
+      {
+        "source": "/config/**",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
+        "source": "/assets/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      },
+      {
+        "source": "**",
+        "headers": [
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        ]
+      }
+    ]
+  }
+}
