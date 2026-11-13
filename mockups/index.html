@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jingle Plan — варіанти макетів лендингу</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  header {
+    padding: 48px 0 24px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 6vw, 44px);
+    letter-spacing: -0.02em;
+    margin: 14px 0 8px;
+  }
+
+  header p {
+    color: var(--muted);
+    max-width: 620px;
+  }
+
+  .grid {
+    display: grid;
+    gap: 18px;
+    padding: 12px 0 64px;
+  }
+
+  .v {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+    background: var(--ivory-card);
+    border: 1px solid var(--ivory-line);
+    border-radius: 28px;
+    padding: 22px;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease;
+  }
+
+  .v:hover {
+    transform: translateY(-3px);
+  }
+
+  .v .preview {
+    height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    padding-top: 22px;
+  }
+
+  .v .preview {
+    flex: none;
+  }
+
+  .v .preview .phone {
+    --w: 76px;
+    margin-bottom: -40px;
+  }
+
+  .v .preview .phone:nth-child(2) {
+    --w: 92px;
+  }
+
+  .p-a {
+    background: var(--ivory-badge);
+  }
+
+  .p-b {
+    background: linear-gradient(160deg, #fffdf8, #ece4d0);
+  }
+
+  .p-c {
+    background: var(--green-deep);
+  }
+
+  .v h2 {
+    font-size: 22px;
+  }
+
+  .v .tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--coral-dark);
+  }
+
+  .v ul {
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 14.5px;
+    display: grid;
+    gap: 3px;
+  }
+
+  .group {
+    font-size: 20px;
+    margin: 20px 0 4px;
+  }
+
+  .v .preview.mix {
+    position: relative;
+    display: block;
+    padding: 0;
+    background: var(--green-deep);
+    border-bottom: 12px solid transparent;
+    border-image: repeating-linear-gradient(135deg, #ff4655 0 12px, #fff 12px 24px) 12;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .v .preview.mix span {
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    font-size: 44px;
+    line-height: 1.05;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .v .preview.mix::after {
+    content: "";
+    position: absolute;
+    right: 20px;
+    top: 26px;
+    width: 110px;
+    height: 120px;
+    border-radius: 14px;
+    background:
+      radial-gradient(circle, var(--green) 0 3px, transparent 4px) 0 0 / 15px 15px,
+      var(--ivory-card);
+  }
+
+  .v .preview.mix.m2::after {
+    top: 90px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .v .preview.mix.m3 {
+    background: linear-gradient(var(--green-deep) 0 70%, #2f4d14 70%);
+  }
+
+  .v .preview.mix.m3::after {
+    background:
+      radial-gradient(circle, #fff 0 3px, transparent 4px) 0 0 / 15px 15px,
+      rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .v .go {
+    font-weight: 600;
+    color: var(--green-deep);
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="#"><img src="assets/logo.webp" alt="" width="36" height="36">Jingle Plan</a>
+    <h1>Варіанти макета лендингу</h1>
+    <p>Однаковий контент і 6 секцій із ТЗ. Спершу мікси структури B із дизайном C, нижче — початкові варіанти.</p>
+  </header>
+  <h2 class="group">Мікс B + C: структура B, дизайн C</h2>
+  <div class="grid">
+    <a class="v" href="mix-1-card/index.html">
+      <div class="preview p-c mix m1"><span>31<br>днів</span></div>
+      <span class="tag">Мікс 1</span>
+      <h2>Зелений hero + картка-календар</h2>
+      <ul>
+        <li>Зелений hero, смужка-льодяник під ним</li>
+        <li>Календар — світла картка на зеленому</li>
+        <li>Решта — спокійна слонова кістка, як у B</li>
+      </ul>
+      <span class="go">Відкрити →</span>
+    </a>
+    <a class="v" href="mix-2-overlap/index.html">
+      <div class="preview p-c mix m2"><span>31<br>днів</span></div>
+      <span class="tag">Мікс 2</span>
+      <h2>Календар на межі льодяника</h2>
+      <ul>
+        <li>Картка календаря наполовину виходить із hero на смужку</li>
+        <li>Лінія таймлайна й рамки секції — смужка-льодяник</li>
+        <li>Екран телефона на зеленій підкладці</li>
+      </ul>
+      <span class="go">Відкрити →</span>
+    </a>
+    <a class="v" href="mix-3-green/index.html">
+      <div class="preview p-c mix m3"><span>31<br>днів</span></div>
+      <span class="tag">Мікс 3</span>
+      <h2>Глибокий зелений</h2>
+      <ul>
+        <li>Календар прямо на зеленому: білі кільця, скляна картка</li>
+        <li>Секція переваг — темно-зелена, вкладки світяться</li>
+        <li>Найбільше зеленого, найсвятковіше</li>
+      </ul>
+      <span class="go">Відкрити →</span>
+    </a>
+  </div>
+  <h2 class="group">Початкові варіанти</h2>
+  <div class="grid">
+    <a class="v" href="a-ivory/index.html">
+      <div class="preview p-a"><div class="phone"><img src="assets/plans.webp" alt=""></div><div class="phone"><img src="assets/home.webp" alt=""></div><div class="phone"><img src="assets/album.webp" alt=""></div></div>
+      <span class="tag">Варіант A</span>
+      <h2>Ivory — тепло як у додатку</h2>
+      <ul>
+        <li>Слонова кістка + коралові акценти, як в інтерфейсі</li>
+        <li>Hero із віялом із трьох телефонів</li>
+        <li>Найспокійніший і найближчий до стилю додатка</li>
+      </ul>
+      <span class="go">Відкрити →</span>
+    </a>
+    <a class="v" href="b-calendar/index.html">
+      <div class="preview p-b"><div class="phone"><img src="assets/home.webp" alt=""></div><div class="phone"><img src="assets/plans.webp" alt=""></div></div>
+      <span class="tag">Варіант B</span>
+      <h2>Calendar — календар-герой</h2>
+      <ul>
+        <li>У hero — живий календар із 31 днем у стилі додатка</li>
+        <li>Таймлайн «1 → 31 грудня», вкладки переваг зі скриншотами</li>
+        <li>Липка панель кнопок на мобільному</li>
+      </ul>
+      <span class="go">Відкрити →</span>
+    </a>
+    <a class="v" href="c-candy/index.html">
+      <div class="preview p-c"><div class="phone"><img src="assets/plans.webp" alt=""></div><div class="phone"><img src="assets/home.webp" alt=""></div><div class="phone"><img src="assets/album.webp" alt=""></div></div>
+      <span class="tag">Варіант C</span>
+      <h2>Candy — зелений, святковий</h2>
+      <ul>
+        <li>Зелений hero з лого та смужкою «льодяник»</li>
+        <li>Bento-сітка переваг, темно-зелений блок «31 грудня»</li>
+        <li>Найяскравіший і найсезонніший для реклами</li>
+      </ul>
+      <span class="go">Відкрити →</span>
+    </a>
+  </div>
+</div>
+</body>
+</html>

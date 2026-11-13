@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jingle Plan — Мікс 3 · Глибокий зелений</title>
+<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="../mix.css">
+</head>
+<body class="v3">
+<a class="mock-tag" href="../index.html">← Варіанти · Мікс 3</a>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#"><img src="../assets/logo.webp" alt="" width="36" height="36">Jingle Plan</a>
+      <div class="lang"><a class="on" href="#">UK</a><a href="#">EN</a></div>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="spark">✦</span> Грудень · 31 день</span>
+        <h1>31 день, щоб підбити <mark>підсумки року</mark> та спланувати наступний</h1>
+        <p class="lead">Твій різдвяний адвент-календар із завданнями для рефлексії, планування та натхнення.</p>
+        <div class="cta-row">
+          <a class="btn btn-white" href="#download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg><span><small>Завантажити в</small>App Store</span></a>
+          <a class="btn btn-ghost-light" href="#download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg><span><small>Завантажити для</small>Android</span></a>
+        </div>
+        <p class="note">Додаток безкоштовно встановити · повний доступ — за підпискою Jingle Plan+</p>
+      </div>
+      <div class="cal-card" aria-label="Приклад адвент-календаря">
+        <div class="cal-head">Грудень <span>Торкнись дня — відкрий завдання</span></div>
+        <div class="cal-grid" id="cal"></div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="candy"></div>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Як працює Jingle Plan</h2>
+      <p>Від першого до останнього дня грудня.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item"><span class="ring">1</span><span class="when">З 1 грудня</span><h3>Відкривай завдання щодня</h3><p>Кожного дня грудня отримуй нове завдання для роздумів про себе, свої досягнення та мрії.</p></div>
+      <div class="t-item"><span class="ring">2</span><span class="when">Протягом місяця</span><h3>Підбивай підсумки</h3><p>Аналізуй різні сфери життя: здоров'я, кар'єру, стосунки, відпочинок та особистий розвиток.</p></div>
+      <div class="t-item"><span class="ring">3</span><span class="when">31 грудня</span><h3>Створюй плани</h3><p>Формуй власне бачення наступного року та зберігай важливі спогади в особистому альбомі.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-benefits" id="benefits">
+  <div class="wrap">
+    <div class="sec-head"><h2>Переваги Jingle Plan</h2><p>Обери функцію — і побачиш, як вона виглядає в додатку.</p></div>
+    <div class="features">
+      <div class="tabs-col">
+        <div class="tabs" role="tablist" id="tabs">
+          <button class="tab" role="tab" aria-selected="true" data-img="home" data-desc="Нове завдання кожного дня грудня"><strong>Адвент-календар</strong><span>Нове завдання кожного дня грудня</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-img="progress" data-desc="Рефлексія над важливими подіями та досягненнями"><strong>Підсумки року</strong><span>Рефлексія над важливими подіями та досягненнями</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-img="plans" data-desc="Цілі в різних сферах життя"><strong>Плани на рік</strong><span>Цілі в різних сферах життя</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-img="album" data-desc="Фотографії та історії твого року"><strong>Альбом спогадів</strong><span>Фотографії та історії твого року</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-img="home" data-desc="Святковий трек і завдання для настрою"><strong>Різдвяна атмосфера</strong><span>Святковий трек і завдання для настрою</span></button>
+          <button class="tab" role="tab" aria-selected="false" data-img="progress" data-desc="Відстеження виконаних завдань"><strong>Прогрес</strong><span>Відстеження виконаних завдань</span></button>
+        </div>
+        <p class="tab-desc" id="tab-desc" aria-live="polite">Нове завдання кожного дня грудня</p>
+      </div>
+      <div class="stage"><div class="phone"><img id="stage-img" src="../assets/home.webp" alt="Екран додатка"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="result" id="result">
+  <div class="wrap result-grid">
+    <div>
+      <div class="big-ring">31</div>
+      <h2>Завершуй рік із вдячністю. Починай новий із натхненням</h2>
+      <p>Наприкінці грудня ти матимеш не просто виконані завдання, а власну історію року: досягнення, спогади, висновки та конкретні плани на майбутнє.</p>
+    </div>
+    <div class="stack">
+      <div class="phone s1"><img src="../assets/progress.webp" alt="Прогрес"></div>
+      <div class="phone s2"><img src="../assets/plans.webp" alt="Плани"></div>
+      <div class="phone s3"><img src="../assets/album.webp" alt="Альбом"></div>
+    </div>
+  </div>
+</section>
+
+<section class="download" id="download">
+  <div class="wrap">
+    <div class="box">
+      <div style="display:grid;gap:16px;align-content:start">
+        <h2 style="margin:0">Почни свій рік за 31 день</h2>
+        <p style="color:var(--muted)">Додаток можна встановити безкоштовно. Щоб відкрити всі дні календаря, потрібна річна підписка Jingle Plan+.</p>
+        <div class="sub-notice"><b>Про підписку.</b> Jingle Plan+ — річний доступ з автоматичним поновленням. Оплата через Apple ID або Google Play; скасувати можна щонайменше за 24 години до кінця періоду.</div>
+        <div class="cta-row">
+          <a class="btn btn-dark" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg><span><small>Завантажити в</small>App Store</span></a>
+        </div>
+      </div>
+      <div class="android-col">
+        <a class="btn btn-coral" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg><span><small>Завантажити для</small>Android (APK)</span></a>
+        <div class="apk-box">
+          <span><b>Версія:</b> 1.8.0 · <b>Розмір:</b> 58 МБ</span>
+          <span><b>SHA-256:</b></span>
+          <code>3f9a1c…e7b204d85a6c91f0b3a7c2d4e8f1a9b6c5d03e7f2a1b4c8d9e0f3a6b</code>
+          <span>Файл завантажується з офіційного сайту Jingle Plan. Скоро — в Google Play.</span>
+        </div>
+        <details class="install">
+          <summary>Як встановити APK</summary>
+          <ol>
+            <li>Відкрий завантажений файл на телефоні.</li>
+            <li>Дозволь встановлення з цього джерела, якщо Android попросить.</li>
+            <li>Натисни «Встановити» та відкрий Jingle Plan.</li>
+          </ol>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#" style="color:var(--text)"><img src="../assets/logo.webp" alt="" width="28" height="28">Jingle Plan</a>
+      <p style="margin-top:8px">© 2026 Jingle Plan</p>
+    </div>
+    <nav>
+      <a href="#">Політика конфіденційності</a>
+      <a href="#">Умови використання</a>
+      <a href="mailto:support@example.com">support@example.com</a>
+      <a href="#">Instagram</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="sticky">
+  <a class="btn btn-dark" href="#download">App Store</a>
+  <a class="btn btn-coral" href="#download">Android</a>
+</div>
+
+<script>
+  const cal = document.getElementById("cal");
+  ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"].forEach((d) => {
+    cal.insertAdjacentHTML("beforeend", `<span class="dow">${d}</span>`);
+  });
+  cal.insertAdjacentHTML("beforeend", "<span></span>");
+  const partial = { 18: 40, 20: 25, 2: 0, 5: 0 };
+  const stars = [6, 24, 25];
+  for (let i = 1; i <= 31; i++) {
+    const p = partial[i] ?? 100;
+    cal.insertAdjacentHTML(
+      "beforeend",
+      `<span class="day${stars.includes(i) ? " star" : ""}" style="--p:${p}">${i}</span>`
+    );
+  }
+  const tabs = document.querySelectorAll(".tab");
+  const img = document.getElementById("stage-img");
+  const desc = document.getElementById("tab-desc");
+  tabs.forEach((t) =>
+    t.addEventListener("click", () => {
+      tabs.forEach((x) => x.setAttribute("aria-selected", "false"));
+      t.setAttribute("aria-selected", "true");
+      desc.textContent = t.dataset.desc;
+      t.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      img.style.opacity = "0";
+      setTimeout(() => {
+        img.src = `../assets/${t.dataset.img}.webp`;
+        img.style.opacity = "1";
+      }, 140);
+    })
+  );
+</script>
+</body>
+</html>

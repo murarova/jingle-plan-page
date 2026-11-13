@@ -1,0 +1,19 @@
+{
+  "ios": {
+    "url": "https://apps.apple.com/ua/app/jingle-plan-%D1%80%D1%96%D1%87%D0%BD%D0%B8%D0%B9-%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%80/id6738605732"
+  },
+  "android": {
+    "type": "apk",
+    "url": "/downloads/jingle-plan.apk"
+  },
+  "privacy": {
+    "uk": "https://www.privacypolicies.com/live/52ce9c15-b98b-4b6b-83d6-c014af9d475b",
+    "en": "https://www.privacypolicies.com/live/52ce9c15-b98b-4b6b-83d6-c014af9d475b"
+  },
+  "terms": {
+    "uk": "",
+    "en": ""
+  },
+  "supportEmail": "support@jingle-plan.app",
+  "instagram": ""
+}
