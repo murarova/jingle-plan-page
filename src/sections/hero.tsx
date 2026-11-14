@@ -1,6 +1,5 @@
-import { BrandWordmark } from "@/components/brand-wordmark";
 import { Calendar } from "@/components/calendar";
-import { LangSwitch } from "@/components/lang-switch";
+import { SiteHeader } from "@/components/site-header";
 import { AndroidButton, AppStoreButton } from "@/components/store-buttons";
 import { withPrice } from "@/config/site";
 import { useI18n } from "@/hooks/use-i18n";
@@ -11,11 +10,8 @@ export function Hero() {
   return (
     <>
       <header id="top" className="hero-bg relative pb-12 text-white">
+        <SiteHeader page="home" />
         <div className="wrap">
-          <div className="flex items-center justify-between py-[18px]">
-            <BrandWordmark height={50} />
-            <LangSwitch />
-          </div>
           <div className="grid items-center gap-8 pt-2 lg:grid-cols-[1.05fr_1fr]">
             <div>
               <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/[0.16] px-3.5 py-1.5 text-[13px] font-semibold uppercase tracking-[0.04em]">

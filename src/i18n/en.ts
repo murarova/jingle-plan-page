@@ -7,7 +7,19 @@ export const en: Dictionary = {
       "31 days of tasks for reflection, planning and inspiration. Review your year and plan the next one with Jingle Plan.",
     ogLocale: "en_US",
   },
-  nav: { home: "Jingle Plan — back to top", language: "Language" },
+  nav: {
+    home: "Jingle Plan — back to top",
+    language: "Language",
+    primary: "Site sections",
+    about: "About the app",
+    how: "How it works",
+    life: "Marathon {season}",
+    lifeLink: "Life",
+    app: "App",
+    download: "Download",
+    menu: "Menu",
+    close: "Close menu",
+  },
   hero: {
     eyebrow: "Christmas yearly planner",
     titleBefore: "31 days to ",
@@ -29,6 +41,8 @@ export const en: Dictionary = {
     androidApkName: "Android (APK)",
     androidShort: "Android",
     comingSoon: "Coming soon",
+    preparing: "Preparing…",
+    preparingFull: "Preparing file…",
   },
   how: {
     title: "How Jingle Plan works",
@@ -56,12 +70,42 @@ export const en: Dictionary = {
     subtitle: "Pick a feature to see how it looks in the app.",
     screenAlt: "Jingle Plan app screen",
     items: [
-      { id: "calendar", image: "home", title: "Advent calendar", text: "A new task every day of December" },
-      { id: "summary", image: "summary", title: "Year in review", text: "Reflect on key events and achievements" },
-      { id: "plans", image: "plans", title: "Plans for the year", text: "Goals across different areas of life" },
-      { id: "album", image: "album", title: "Memory album", text: "Photos and stories of your year" },
-      { id: "mood", image: "day", title: "Christmas mood", text: "A festive track and mood-lifting tasks" },
-      { id: "progress", image: "progress", title: "Progress", text: "Track the tasks you completed" },
+      {
+        id: "calendar",
+        image: "home",
+        title: "Advent calendar",
+        text: "A new task every day of December",
+      },
+      {
+        id: "summary",
+        image: "summary",
+        title: "Year in review",
+        text: "Reflect on key events and achievements",
+      },
+      {
+        id: "plans",
+        image: "plans",
+        title: "Plans for the year",
+        text: "Goals across different areas of life",
+      },
+      {
+        id: "album",
+        image: "album",
+        title: "Memory album",
+        text: "Photos and stories of your year",
+      },
+      {
+        id: "mood",
+        image: "day",
+        title: "Christmas mood",
+        text: "A festive track and mood-lifting tasks",
+      },
+      {
+        id: "progress",
+        image: "progress",
+        title: "Progress",
+        text: "Track the tasks you completed",
+      },
     ],
   },
   outcome: {
@@ -74,7 +118,10 @@ export const en: Dictionary = {
     text: "Pick your phone and start December with a plan. The app is free to install, and full access comes with a yearly Jingle Plan+ subscription for {price}.",
     platforms: {
       ios: { label: "iPhone and iPad", text: "Install from the App Store" },
-      android: { label: "Android", text: "Download the APK file from our website" },
+      android: {
+        label: "Android",
+        text: "Download the APK file from our website",
+      },
     },
     subscriptionTitle: "About the subscription.",
     subscriptionText:
@@ -106,5 +153,142 @@ export const en: Dictionary = {
     accept: "Accept",
     decline: "Decline",
     label: "Cookie consent",
+  },
+  lifePromo: {
+    eyebrow: "A special project · {monthYear}",
+    title: "Review the year with us",
+    text: "A creative marathon with Станислава Орловська. 31 days of reflection, creative writing and a pre-New Year atmosphere with interesting people.",
+    cta: "More about the marathon",
+  },
+  life: {
+    meta: {
+      title: "Jingle Plan {season} — A creative marathon to review your year",
+      description:
+        "31 days to review {reflectionYear} and plan {planningYear}. Creative tasks, creative writing and a festive community with {host}.",
+      ogTitle: "Creative reflections on the year — Jingle Plan {season}",
+      ogLocale: "en_US",
+    },
+    cta: "Join the marathon",
+    closed: "Registration is closed",
+    hero: {
+      eyebrow: "{dateRange} · Jingle Plan {season}",
+      titleBefore: "",
+      titleHighlight: "Creative",
+      titleAfter: " reflections on the year",
+      lead: "31 days to review {reflectionYear}, plan {planningYear}, and spend the pre-New Year season with interesting people.",
+      mood: "We’ll build a festive mood with jazz, remember the year, write, dream and make plans.",
+      priceNote: "{price} · App access included",
+    },
+    about: {
+      title: "An advent calendar where the treat is your own experience",
+      lead: "Jingle Plan is a chance to give December to yourself. Remember how you lived this year, notice what you achieved, draw conclusions and see what you want from the next one.",
+      more: "And spend that time in good company, with a pre-New Year mood.",
+      cards: [
+        {
+          title: "Review of {reflectionYear}",
+          text: "Remember the important events, see the value of what you lived and notice your own achievements.",
+        },
+        {
+          title: "Plans for {planningYear}",
+          text: "Shape plans and wishes across different areas of life.",
+        },
+        {
+          title: "Creative reflection",
+          text: "Look at the year from another angle through creative writing.",
+        },
+      ],
+    },
+    how: {
+      title: "How it works",
+      app: {
+        title: "In the Jingle Plan app",
+        when: "Every day, {daySpan}",
+        items: [
+          "Tasks to review the year",
+          "Planning the next year",
+          "Reflection tasks",
+          "Festive tracks and mood tasks",
+        ],
+      },
+      community: {
+        title: "In the Telegram community",
+        when: "Throughout December",
+        items: [
+          "A creative writing task every other day",
+          "Conversation with participants",
+          "Sharing stories and experience",
+          "Inspiration and support from the group",
+        ],
+      },
+      note: "Telegram tasks don’t repeat the app. They add creative writing practices.",
+      appLink: "More about the Jingle Plan app",
+    },
+    host: {
+      role: "Host",
+      name: "Stanislava Orlovska",
+      photoAlt: "Stanislava Orlovska",
+      facts: [
+        "Accredited Gestalt therapist",
+        "Author of literary texts",
+        "10 years of management experience",
+      ],
+      instagram: "Instagram",
+      facebook: "Facebook",
+    },
+    together: {
+      title: "Better together",
+      lead: "You can, of course, do every task in private. Sharing is much more interesting.",
+      text: "Read other people’s stories, find new ideas, get inspired by someone else’s experience and notice something important in your own life.",
+      close: "That is how our group gets its particular kind of magic.",
+      choice: "Sharing, or keeping your answers to yourself, is up to you.",
+    },
+    testimonials: {
+      title: "Impressions",
+      readMore: "Read more",
+      showMore: "Show more",
+      items: [
+        {
+          paragraphs: [
+            "Хочу подякувати кожному із вас за ваші фоточки і за ваші історії. По-перше я для себе взяла декілька штук, що можна в своєму житті покращити, а по-друге це мотивувало мене переглядати свій рік теж, не випадати із процесу.",
+            "І якщо на початку грудня я свій рік оцінювала як ніякий, вижила, зберегла те що в мене було і молодець, то на прикінці я в ньому знайшла здобутки теж, і головне, оцінила яка робота була проведена протягом року (це все невелики справи, але принаймні зрозуміло, чим я жила цей рік).",
+            "І круто мати план на рік по сферах життя, подивимось, що із цього вийде зробити.",
+            "А ранкові треки чого коштували! Прослуховувала за сніданком і кайфувала.",
+          ],
+        },
+        {
+          paragraphs: [
+            "Було легко, корисно і не навязливо. Завдання прості але дають структуру і на неї можна опиратись, сподобалось, у наступному році думаю прийду ще. Дуже вдячна",
+          ],
+        },
+        {
+          paragraphs: [
+            'Дякую дуже! як і зі всіх активностей - я з цієї винесла можливість спілкування з дуже цікавими та дуже різними людьми) і зазирнути у світ людей, які планують в деталях😊 а ще - це поштовх для мене дотримуватися ось цих "деталей".',
+          ],
+        },
+        {
+          paragraphs: [
+            "Все, як на мене, було суперкласно! Дуже дякую за проєкт! Думаю, що завдяки, зокрема, святковому та творчому духу/вайбу проєкту я таки дозволила собі купити ялинку на новорічні свята. А також почала малювати і дуже з цього тішуся.",
+          ],
+        },
+      ],
+    },
+    pricing: {
+      title: "So, shall we meet in December?",
+      text: "31 days for yourself, creativity and a festive mood.",
+      tradition: "As usual — just one hryvnia more than last year.",
+      includesTitle: "Participation includes:",
+      includes: [
+        { text: "Access to the Jingle Plan app", app: true },
+        { text: "A place in the Telegram community", app: false },
+        { text: "Daily tasks through December", app: false },
+        { text: "A creative writing practice every other day", app: false },
+        {
+          text: "Conversation, shared experience and a festive atmosphere",
+          app: false,
+        },
+      ],
+      contact: "Questions left?",
+      contactCta: "Write to me.",
+    },
   },
 };

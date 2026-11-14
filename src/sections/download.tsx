@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { track } from "@/analytics/track";
+import { CandyPanel } from "@/components/candy-panel";
 import { Reveal } from "@/components/reveal";
 import { AndroidButton, AppStoreButton } from "@/components/store-buttons";
 import { withPrice } from "@/config/site";
@@ -87,11 +88,8 @@ export function Download() {
   return (
     <section id="download" ref={sectionRef} className="py-[72px]">
       <div className="wrap">
-        <Reveal className="relative overflow-hidden rounded-[32px] border-2 border-ivory-line bg-ivory-card px-5 pb-8 pt-12 md:px-12 md:pb-12 md:pt-16">
-          <div
-            className="candy-thin absolute inset-x-0 top-0"
-            aria-hidden="true"
-          />
+        <Reveal>
+          <CandyPanel>
           <div className="mx-auto mb-8 max-w-[640px] text-center md:mb-10">
             <h2 className="mb-3 text-[clamp(28px,5.6vw,44px)] font-bold leading-[1.1] tracking-[-0.02em]">
               {t.download.title}
@@ -117,6 +115,7 @@ export function Download() {
               {isApk ? <ApkDetails /> : null}
             </Platform>
           </div>
+          </CandyPanel>
         </Reveal>
       </div>
     </section>

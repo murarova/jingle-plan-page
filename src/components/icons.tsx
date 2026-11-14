@@ -1,3 +1,30 @@
+export function Spinner({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none animate-spin`} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" opacity="0.25" />
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17.4" cy="6.6" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M14.2 8.5V6.9c0-.7.1-1.2 1.3-1.2H17V3h-2C12.4 3 11 4.4 11 6.7v1.8H9V11h2v10h3V11h2.4l.4-2.5h-2.8z" />
+    </svg>
+  );
+}
+
 export function AndroidIcon({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

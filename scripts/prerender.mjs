@@ -7,7 +7,7 @@ const dist = resolve(root, "dist");
 const ssrDir = resolve(root, "dist-ssr");
 const siteUrl = (process.env.SITE_URL ?? "https://jingle-plan.app").replace(/\/$/, "");
 
-const { render, buildHead, LANGS } = await import(pathToFileURL(resolve(ssrDir, "entry-server.js")).href);
+const { render, buildHead, buildLifeHead, LANGS, homePath, lifePath } = await import(pathToFileURL(resolve(ssrDir, "entry-server.js")).href);
 
 const template = readFileSync(resolve(dist, "index.html"), "utf8");
 
@@ -30,55 +30,41 @@ for (const lang of LANGS) {
     .replace("<!--head-->", buildHead(lang, siteUrl))
     .replace("<!--app-->", render(lang, data))
     .replace("<!--data-->", dataScript);
-  const dir = resolve(dist, lang);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(resolve(dir, "index.html"), html);
-  console.log(`prerender: /${lang}/`);
+  const route = homePath(lang);
+  if (route === "/") {
+    writeFileSync(resolve(dist, "index.html"), html);
+  } else {
+    const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(resolve(dir, "index.html"), html);
+  }
+  console.log(`prerender: ${route}`);
 }
 
-const alternates = LANGS.map(
-  (lang) => `<link rel="alternate" hreflang="${lang}" href="${siteUrl}/${lang}/" />`,
-).join("\n    ");
-
-const redirect = `<!doctype html>
-<html lang="uk">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jingle Plan</title>
-    <meta name="robots" content="noindex, follow" />
-    <link rel="canonical" href="${siteUrl}/uk/" />
-    ${alternates}
-    <link rel="alternate" hreflang="x-default" href="${siteUrl}/" />
-    <script>
-      (function () {
-        var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "uk"];
-        var enabled = ${JSON.stringify(LANGS)};
-        var target = "uk";
-        for (var i = 0; i < langs.length; i += 1) {
-          var code = String(langs[i]).toLowerCase().slice(0, 2);
-          if (enabled.indexOf(code) !== -1) { target = code; break; }
-        }
-        location.replace("/" + target + "/" + location.search + location.hash);
-      })();
-    </script>
-  </head>
-  <body>
-    <noscript>
-      <p>${LANGS.map((code) => `<a href="/${code}/">${code === "uk" ? "Українською" : "English"}</a>`).join(" · ")}</p>
-    </noscript>
-  </body>
-</html>
-`;
-writeFileSync(resolve(dist, "index.html"), redirect);
+for (const lang of LANGS) {
+  const route = lifePath(lang);
+  const html = template
+    .replace("%LANG%", lang)
+    .replace("<!--head-->", buildLifeHead(lang, siteUrl))
+    .replace("<!--app-->", render(lang, data, "life"))
+    .replace("<!--data-->", dataScript);
+  const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "index.html"), html);
+  console.log(`prerender: ${route}`);
+}
 
 const lastmod = new Date().toISOString().slice(0, 10);
-const urls = LANGS.map((lang) => {
-  const alt = LANGS.map(
-    (code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${siteUrl}/${code}/" />`,
-  ).join("\n");
-  return `  <url>\n    <loc>${siteUrl}/${lang}/</loc>\n    <lastmod>${lastmod}</lastmod>\n${alt}\n  </url>`;
-}).join("\n");
+
+function sitemapUrl(path, hrefFor) {
+  const alt = LANGS.map((code) => `    <xhtml:link rel="alternate" hreflang="${code}" href="${hrefFor(code)}" />`).join("\n");
+  return `  <url>\n    <loc>${siteUrl}${path}</loc>\n    <lastmod>${lastmod}</lastmod>\n${alt}\n  </url>`;
+}
+
+const urls = [
+  ...LANGS.map((lang) => sitemapUrl(homePath(lang), (code) => `${siteUrl}${homePath(code)}`)),
+  ...LANGS.map((lang) => sitemapUrl(lifePath(lang), (code) => `${siteUrl}${lifePath(code)}`)),
+].join("\n");
 
 writeFileSync(
   resolve(dist, "sitemap.xml"),
