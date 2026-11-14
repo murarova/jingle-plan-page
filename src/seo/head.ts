@@ -12,10 +12,15 @@ export function langUrl(siteUrl: string, lang: Lang): string {
   return `${siteUrl}${homePath(lang)}`;
 }
 
+function homeOgImage(siteUrl: string, lang: Lang): string {
+  const file = lang === DEFAULT_LANG ? "/og-uk-2.jpg" : `/og-${lang}.jpg`;
+  return `${siteUrl}${file}`;
+}
+
 export function buildHead(lang: Lang, siteUrl: string): string {
   const { meta } = getDictionary(lang);
   const url = langUrl(siteUrl, lang);
-  const image = `${siteUrl}/og-${lang}.jpg`;
+  const image = homeOgImage(siteUrl, lang);
   const title = escapeAttr(meta.title);
   const description = escapeAttr(meta.description);
 
