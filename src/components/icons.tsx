@@ -1,3 +1,12 @@
+export function Spinner({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none animate-spin`} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" opacity="0.25" />
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function AndroidIcon({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

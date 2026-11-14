@@ -29,6 +29,8 @@ export const en: Dictionary = {
     androidApkName: "Android (APK)",
     androidShort: "Android",
     comingSoon: "Coming soon",
+    preparing: "Preparing…",
+    preparingFull: "Preparing file…",
   },
   how: {
     title: "How Jingle Plan works",

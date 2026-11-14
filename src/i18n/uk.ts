@@ -27,6 +27,8 @@ export const uk = {
     androidApkName: "Android (APK)",
     androidShort: "Android",
     comingSoon: "Незабаром",
+    preparing: "Готуємо…",
+    preparingFull: "Готуємо файл…",
   },
   how: {
     title: "Як працює Jingle Plan",

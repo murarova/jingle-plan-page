@@ -1,8 +1,12 @@
+import { useEffect, useState, type MouseEvent } from "react";
+
 import { track } from "@/analytics/track";
 import badge from "@/assets/app-store-badge.svg";
-import { AndroidIcon } from "@/components/icons";
+import { AndroidIcon, Spinner } from "@/components/icons";
 import { useI18n } from "@/hooks/use-i18n";
 import { useSiteData } from "@/hooks/use-site-data";
+
+const PREPARING_MS = 4000;
 
 type Tone = "hero" | "page";
 type Placement = "hero" | "download" | "sticky";
@@ -83,6 +87,13 @@ export function AndroidButton({
   const android = links.android;
   const isApk = android.type === "apk";
   const name = compact ? t.stores.androidShort : isApk && withApkLabel ? t.stores.androidApkName : t.stores.androidName;
+  const [preparing, setPreparing] = useState(false);
+
+  useEffect(() => {
+    if (!preparing) return;
+    const timer = window.setTimeout(() => setPreparing(false), PREPARING_MS);
+    return () => window.clearTimeout(timer);
+  }, [preparing]);
 
   if (isApk && !apk.available) {
     return (
@@ -95,7 +106,12 @@ export function AndroidButton({
 
   const scrollsToInstructions = isApk && placement === "hero";
 
-  const onClick = () => {
+  const onClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (preparing) {
+      event.preventDefault();
+      return;
+    }
+    if (isApk && !scrollsToInstructions) setPreparing(true);
     track("click_android_download", {
       placement,
       source: android.type,
@@ -115,11 +131,20 @@ export function AndroidButton({
       href={scrollsToInstructions ? "#android" : android.url}
       rel="noopener"
       {...(isApk && !scrollsToInstructions ? { download: "jingle-plan.apk" } : {})}
-      className={`${base} ${androidToneClass[tone]} ${compact ? compactClass : regularClass}`}
+      className={`${base} ${androidToneClass[tone]} ${compact ? compactClass : regularClass} ${preparing ? "cursor-progress" : ""}`}
+      aria-busy={preparing}
       onClick={onClick}
     >
-      <AndroidIcon className={`${compact ? "h-6 w-6" : "h-8 w-8"} ${tone === "page" ? "text-[#3ddc84]" : "text-white"}`} />
-      <Label small={t.stores.androidSmall} name={name} compact={compact} />
+      {preparing ? (
+        <Spinner className={compact ? "h-6 w-6" : "h-8 w-8"} />
+      ) : (
+        <AndroidIcon className={`${compact ? "h-6 w-6" : "h-8 w-8"} ${tone === "page" ? "text-[#3ddc84]" : "text-white"}`} />
+      )}
+      {preparing ? (
+        <span role="status">{compact ? t.stores.preparing : t.stores.preparingFull}</span>
+      ) : (
+        <Label small={t.stores.androidSmall} name={name} compact={compact} />
+      )}
     </a>
   );
 }
