@@ -13,7 +13,11 @@ export type AnalyticsEvent =
   | "click_support_email"
   | "view_download"
   | "open_apk_instructions"
-  | "select_language";
+  | "select_language"
+  | "life_page_view"
+  | "life_promo_click"
+  | "life_register_click"
+  | "life_contact_click";
 
 type EventParams = Record<string, string | number | boolean>;
 

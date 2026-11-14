@@ -4,6 +4,7 @@ import "@fontsource-variable/nunito";
 import "@/index.css";
 import { App } from "@/App";
 import { DEFAULT_SITE_DATA } from "@/config/defaults";
+import { isLifePath, type SitePage } from "@/routes";
 import { DEFAULT_LANG, isLang, type Lang } from "@/types/lang";
 import type { SiteData } from "@/types/site-data";
 
@@ -20,12 +21,22 @@ function detectLang(): Lang {
   return isLang(fromPath) ? fromPath : DEFAULT_LANG;
 }
 
+function detectPage(): SitePage {
+  return isLifePath(window.location.pathname) ? "life" : "home";
+}
+
+const path = window.location.pathname;
+const legacyHome = path === "/uk" || path === "/uk/";
+if (legacyHome) {
+  window.location.replace(`/${window.location.search}${window.location.hash}`);
+}
+
 const container = document.getElementById("root");
 
-if (container) {
+if (container && !legacyHome) {
   const app = (
     <StrictMode>
-      <App lang={detectLang()} data={window.__SITE_DATA__ ?? DEFAULT_SITE_DATA} />
+      <App lang={detectLang()} data={window.__SITE_DATA__ ?? DEFAULT_SITE_DATA} page={detectPage()} />
     </StrictMode>
   );
   if (container.hasChildNodes()) hydrateRoot(container, app);

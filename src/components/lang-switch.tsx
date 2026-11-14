@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { track } from "@/analytics/track";
 import { useI18n } from "@/hooks/use-i18n";
+import { homePath, lifePath, type SitePage } from "@/routes";
 import { LANGS, type Lang } from "@/types/lang";
 
-export function LangSwitch() {
+export function LangSwitch({ page = "home" }: { page?: SitePage }) {
   const { lang, t } = useI18n();
   const [suffix, setSuffix] = useState("");
 
@@ -20,7 +21,7 @@ export function LangSwitch() {
         return (
           <a
             key={code}
-            href={`/${code}/${suffix}`}
+            href={`${page === "life" ? lifePath(code) : homePath(code)}${suffix}`}
             hrefLang={code}
             lang={code}
             aria-current={active ? "true" : undefined}
