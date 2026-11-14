@@ -22,7 +22,7 @@ export function LifePromo() {
             <h2 id="life-promo-title" className="mb-2 text-[clamp(22px,4vw,30px)] font-bold leading-[1.15] tracking-[-0.02em]">
               {copy.title}
             </h2>
-            <p className="text-[16px] text-muted">{copy.text}</p>
+            <p className="whitespace-pre-line text-[16px] text-muted">{copy.text}</p>
           </div>
           <a
             href={lifePath(lang)}

@@ -70,12 +70,42 @@ export const en: Dictionary = {
     subtitle: "Pick a feature to see how it looks in the app.",
     screenAlt: "Jingle Plan app screen",
     items: [
-      { id: "calendar", image: "home", title: "Advent calendar", text: "A new task every day of December" },
-      { id: "summary", image: "summary", title: "Year in review", text: "Reflect on key events and achievements" },
-      { id: "plans", image: "plans", title: "Plans for the year", text: "Goals across different areas of life" },
-      { id: "album", image: "album", title: "Memory album", text: "Photos and stories of your year" },
-      { id: "mood", image: "day", title: "Christmas mood", text: "A festive track and mood-lifting tasks" },
-      { id: "progress", image: "progress", title: "Progress", text: "Track the tasks you completed" },
+      {
+        id: "calendar",
+        image: "home",
+        title: "Advent calendar",
+        text: "A new task every day of December",
+      },
+      {
+        id: "summary",
+        image: "summary",
+        title: "Year in review",
+        text: "Reflect on key events and achievements",
+      },
+      {
+        id: "plans",
+        image: "plans",
+        title: "Plans for the year",
+        text: "Goals across different areas of life",
+      },
+      {
+        id: "album",
+        image: "album",
+        title: "Memory album",
+        text: "Photos and stories of your year",
+      },
+      {
+        id: "mood",
+        image: "day",
+        title: "Christmas mood",
+        text: "A festive track and mood-lifting tasks",
+      },
+      {
+        id: "progress",
+        image: "progress",
+        title: "Progress",
+        text: "Track the tasks you completed",
+      },
     ],
   },
   outcome: {
@@ -88,7 +118,10 @@ export const en: Dictionary = {
     text: "Pick your phone and start December with a plan. The app is free to install, and full access comes with a yearly Jingle Plan+ subscription for {price}.",
     platforms: {
       ios: { label: "iPhone and iPad", text: "Install from the App Store" },
-      android: { label: "Android", text: "Download the APK file from our website" },
+      android: {
+        label: "Android",
+        text: "Download the APK file from our website",
+      },
     },
     subscriptionTitle: "About the subscription.",
     subscriptionText:
@@ -124,7 +157,7 @@ export const en: Dictionary = {
   lifePromo: {
     eyebrow: "A special project · {monthYear}",
     title: "Review the year with us",
-    text: "A creative marathon with Слава Орловська. 31 days of reflection, creative writing and a pre-New Year atmosphere with interesting people.",
+    text: "A creative marathon with Станислава Орловська. 31 days of reflection, creative writing and a pre-New Year atmosphere with interesting people.",
     cta: "More about the marathon",
   },
   life: {
@@ -170,7 +203,12 @@ export const en: Dictionary = {
       app: {
         title: "In the Jingle Plan app",
         when: "Every day, {daySpan}",
-        items: ["Tasks to review the year", "Planning the next year", "Reflection tasks", "Festive tracks and mood tasks"],
+        items: [
+          "Tasks to review the year",
+          "Planning the next year",
+          "Reflection tasks",
+          "Festive tracks and mood tasks",
+        ],
       },
       community: {
         title: "In the Telegram community",
@@ -224,7 +262,7 @@ export const en: Dictionary = {
         },
         {
           paragraphs: [
-            "Дякую дуже! як і зі всіх активностей - я з цієї винесла можливість спілкування з дуже цікавими та дуже різними людьми) і зазирнути у світ людей, які планують в деталях😊 а ще - це поштовх для мене дотримуватися ось цих \"деталей\".",
+            'Дякую дуже! як і зі всіх активностей - я з цієї винесла можливість спілкування з дуже цікавими та дуже різними людьми) і зазирнути у світ людей, які планують в деталях😊 а ще - це поштовх для мене дотримуватися ось цих "деталей".',
           ],
         },
         {
@@ -244,7 +282,10 @@ export const en: Dictionary = {
         { text: "A place in the Telegram community", app: false },
         { text: "Daily tasks through December", app: false },
         { text: "A creative writing practice every other day", app: false },
-        { text: "Conversation, shared experience and a festive atmosphere", app: false },
+        {
+          text: "Conversation, shared experience and a festive atmosphere",
+          app: false,
+        },
       ],
       contact: "Questions left?",
       contactCta: "Write to me.",
