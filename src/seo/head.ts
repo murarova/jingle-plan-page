@@ -67,7 +67,7 @@ export function lifeCanonical(siteUrl: string, lang: Lang): string {
 }
 
 function lifeOgImage(siteUrl: string, lang: Lang): string {
-  const file = lang === DEFAULT_LANG ? "/og-life.jpg?v=2" : `/og-life-${lang}.jpg`;
+  const file = lang === DEFAULT_LANG ? "/og-life-2.jpg" : `/og-life-${lang}.jpg`;
   return `${siteUrl}${file}`;
 }
 
