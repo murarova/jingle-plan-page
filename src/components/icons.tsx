@@ -25,6 +25,44 @@ export function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) 
   );
 }
 
+export function PhoneIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="7" y="3" width="10" height="18" rx="2.2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M11 18.2h2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function BookIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 6.2C10.2 4.9 8 4.2 5.2 4.2v13.2c2.8 0 5 .7 6.8 2 1.8-1.3 4-2 6.8-2V4.2c-2.8 0-5 .7-6.8 2z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M12 6.2v13.2" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
+export function GiftIcon({ className = "h-7 w-7" }: { className?: string }) {
+  return (
+    <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="10" width="18" height="11" rx="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M3 14.5h18M12 10v11" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path
+        d="M12 10c-.2-2.4-1.6-4.2-3.4-4.2-1.4 0-2.3 1.1-2.3 2.2 0 1.6 2.2 2 5.7 2 3.5 0 5.7-.4 5.7-2 0-1.1-.9-2.2-2.3-2.2-1.8 0-3.2 1.8-3.4 4.2z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function AndroidIcon({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg className={`${className} flex-none`} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

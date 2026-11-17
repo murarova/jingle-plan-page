@@ -10,6 +10,8 @@ export type AnalyticsEvent =
   | "click_android_download"
   | "apk_download_started"
   | "click_privacy_policy"
+  | "click_public_offer"
+  | "click_contacts"
   | "click_support_email"
   | "view_download"
   | "open_apk_instructions"
@@ -17,7 +19,8 @@ export type AnalyticsEvent =
   | "life_page_view"
   | "life_promo_click"
   | "life_register_click"
-  | "life_contact_click";
+  | "life_contact_click"
+  | "click_buy_subscription";
 
 type EventParams = Record<string, string | number | boolean>;
 

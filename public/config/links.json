@@ -7,12 +7,12 @@
     "url": "/downloads/jingle-plan.apk"
   },
   "privacy": {
-    "uk": "https://www.privacypolicies.com/live/52ce9c15-b98b-4b6b-83d6-c014af9d475b",
-    "en": "https://www.privacypolicies.com/live/52ce9c15-b98b-4b6b-83d6-c014af9d475b"
+    "uk": "/privacy/",
+    "en": "/en/privacy/"
   },
   "terms": {
-    "uk": "",
-    "en": ""
+    "uk": "/offer/",
+    "en": "/en/offer/"
   },
   "supportEmail": "support@jingle-plan.app",
   "instagram": ""

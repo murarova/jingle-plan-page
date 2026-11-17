@@ -109,7 +109,7 @@ export function Download() {
               label={platforms.android.label}
               text={platforms.android.text}
             >
-              <div className="flex">
+              <div className="flex flex-wrap gap-3">
                 <AndroidButton tone="page" placement="download" withApkLabel />
               </div>
               {isApk ? <ApkDetails /> : null}

@@ -7,7 +7,9 @@ const dist = resolve(root, "dist");
 const ssrDir = resolve(root, "dist-ssr");
 const siteUrl = (process.env.SITE_URL ?? "https://jingle-plan.app").replace(/\/$/, "");
 
-const { render, buildHead, buildLifeHead, LANGS, homePath, lifePath } = await import(pathToFileURL(resolve(ssrDir, "entry-server.js")).href);
+const { render, buildHead, buildLifeHead, buildContactsHead, buildOfferHead, buildPrivacyHead, buildSubscribeHead, LANGS, homePath, lifePath, contactsPath, offerPath, privacyPath, subscribePath } = await import(
+  pathToFileURL(resolve(ssrDir, "entry-server.js")).href
+);
 
 const template = readFileSync(resolve(dist, "index.html"), "utf8");
 
@@ -54,6 +56,58 @@ for (const lang of LANGS) {
   console.log(`prerender: ${route}`);
 }
 
+for (const lang of LANGS) {
+  const route = subscribePath(lang);
+  const html = template
+    .replace("%LANG%", lang)
+    .replace("<!--head-->", buildSubscribeHead(lang, siteUrl))
+    .replace("<!--app-->", render(lang, data, "subscribe"))
+    .replace("<!--data-->", dataScript);
+  const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "index.html"), html);
+  console.log(`prerender: ${route}`);
+}
+
+for (const lang of LANGS) {
+  const route = contactsPath(lang);
+  const html = template
+    .replace("%LANG%", lang)
+    .replace("<!--head-->", buildContactsHead(lang, siteUrl))
+    .replace("<!--app-->", render(lang, data, "contacts"))
+    .replace("<!--data-->", dataScript);
+  const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "index.html"), html);
+  console.log(`prerender: ${route}`);
+}
+
+for (const lang of LANGS) {
+  const route = offerPath(lang);
+  const html = template
+    .replace("%LANG%", lang)
+    .replace("<!--head-->", buildOfferHead(lang, siteUrl))
+    .replace("<!--app-->", render(lang, data, "offer"))
+    .replace("<!--data-->", dataScript);
+  const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "index.html"), html);
+  console.log(`prerender: ${route}`);
+}
+
+for (const lang of LANGS) {
+  const route = privacyPath(lang);
+  const html = template
+    .replace("%LANG%", lang)
+    .replace("<!--head-->", buildPrivacyHead(lang, siteUrl))
+    .replace("<!--app-->", render(lang, data, "privacy"))
+    .replace("<!--data-->", dataScript);
+  const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "index.html"), html);
+  console.log(`prerender: ${route}`);
+}
+
 const lastmod = new Date().toISOString().slice(0, 10);
 
 function sitemapUrl(path, hrefFor) {
@@ -64,6 +118,10 @@ function sitemapUrl(path, hrefFor) {
 const urls = [
   ...LANGS.map((lang) => sitemapUrl(homePath(lang), (code) => `${siteUrl}${homePath(code)}`)),
   ...LANGS.map((lang) => sitemapUrl(lifePath(lang), (code) => `${siteUrl}${lifePath(code)}`)),
+  ...LANGS.map((lang) => sitemapUrl(subscribePath(lang), (code) => `${siteUrl}${subscribePath(code)}`)),
+  ...LANGS.map((lang) => sitemapUrl(privacyPath(lang), (code) => `${siteUrl}${privacyPath(code)}`)),
+  ...LANGS.map((lang) => sitemapUrl(offerPath(lang), (code) => `${siteUrl}${offerPath(code)}`)),
+  ...LANGS.map((lang) => sitemapUrl(contactsPath(lang), (code) => `${siteUrl}${contactsPath(code)}`)),
 ].join("\n");
 
 writeFileSync(

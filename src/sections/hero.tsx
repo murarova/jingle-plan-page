@@ -1,11 +1,13 @@
 import { Calendar } from "@/components/calendar";
 import { SiteHeader } from "@/components/site-header";
+import { SubscribeButton } from "@/components/subscribe-button";
 import { AndroidButton, AppStoreButton } from "@/components/store-buttons";
 import { withPrice } from "@/config/site";
 import { useI18n } from "@/hooks/use-i18n";
 
 export function Hero() {
   const { t } = useI18n();
+  const [accessNote, priceNote] = withPrice(t.hero.note).split("\n");
 
   return (
     <>
@@ -28,11 +30,13 @@ export function Hero() {
                 {t.hero.titleAfter}
               </h1>
               <p className="mb-[22px] max-w-[520px] text-[clamp(17px,4.2vw,21px)] text-white/90">{t.hero.lead}</p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <AppStoreButton placement="hero" />
                 <AndroidButton tone="hero" placement="hero" />
+                <SubscribeButton />
               </div>
-              <p className="mt-3 whitespace-pre-line text-[13px] text-white/90">{withPrice(t.hero.note)}</p>
+              <p className="mt-3 text-[13px] text-white/90">{accessNote}</p>
+              {priceNote ? <p className="mt-1 text-base font-bold text-white/90">{priceNote}</p> : null}
             </div>
             <Calendar />
           </div>
