@@ -27,6 +27,8 @@ export const en: Dictionary = {
     titleAfter: " and plan the next one",
     lead: "Your Christmas advent calendar with tasks for reflection, planning and inspiration.",
     note: "Free to install\nFull access with Jingle Plan+, {price} per year",
+    subscribeBrand: "Jingle Plan+",
+    subscribeCta: "Buy subscription",
   },
   calendar: {
     title: "December",
@@ -142,8 +144,8 @@ export const en: Dictionary = {
   },
   footer: {
     privacy: "Privacy Policy",
-    terms: "Terms of Use",
-    support: "Contact us",
+    terms: "Public offer",
+    contacts: "Contacts",
     instagram: "Instagram",
     cookies: "Cookie settings",
     copyright: "Jingle Plan. All rights reserved.",
@@ -290,5 +292,121 @@ export const en: Dictionary = {
       contact: "Questions left?",
       contactCta: "Write to me.",
     },
+  },
+  subscribe: {
+    meta: {
+      title: "Jingle Plan — yearly subscription",
+      description:
+        "A year with Jingle Plan: advent, review, plans and a memory album. 599.99 UAH for 12 months of access.",
+      ogLocale: "en_US",
+    },
+    home: "Home",
+    eyebrow: "Jingle Plan · Yearly subscription",
+    titleBefore: "Give yourself a year filled with ",
+    titleHighlight: "meaning",
+    titleAfter: "",
+    lead: "Keep what matters, look back, make plans and live them.",
+    planTitle: "Yearly subscription",
+    price: "599.99 UAH",
+    priceNote: "12 months of access",
+    priceMonth: "That’s 50 UAH a month",
+    includes: [
+      "Full access to the app",
+      "Every advent calendar task",
+      "Review, plans and album for the whole year",
+      "History from previous years stays saved",
+    ],
+    email: "Your email",
+    emailPlaceholder: "you@email.com",
+    emailHint: "Use the email of your Jingle Plan account",
+    consentLead: "I accept the terms of the ",
+    terms: "Public Offer",
+    consentMid: " and I have read the ",
+    privacy: "Privacy Policy",
+    pay: "Pay 599.99 UAH",
+    payment: {
+      secure: "Secure payment via",
+    },
+    secure: "Secure payment through the payment provider",
+    activateTitle: "How do I activate the subscription?",
+    steps: [
+      "Enter your account email",
+      "Pay for the yearly subscription",
+      "Open Jingle Plan and use everything it includes",
+    ],
+    faqTitle: "Common questions",
+    faq: [
+      {
+        q: "When does the subscription start?",
+        before: [
+          "After the payment is confirmed. Then open Jingle Plan with the email you entered.",
+        ],
+      },
+      {
+        q: "Can I use the app all year?",
+        before: [
+          "Yes. The subscription opens 12 months of access: the December advent, your review, plans, album and progress.",
+        ],
+      },
+      {
+        q: "Does the subscription renew automatically?",
+        before: [
+          "No. You pay once for 12 months. When that period ends, you can extend access separately.",
+        ],
+      },
+      {
+        q: "What happens to my data when the subscription ends?",
+        before: [
+          "Your data stays available even after the subscription ends. You can still view your reviews, plans, photos and memories from the paid period without renewing.",
+          "If you want to delete your data from Jingle Plan completely, you can do it in two ways:",
+        ],
+        ways: [
+          {
+            label: "In the app:",
+            text: "open the menu and tap “Delete account”.",
+          },
+          {
+            label: "Through support:",
+            text: "email us and ask to delete your data, including the email address you used when you registered in the app.",
+          },
+        ],
+        after: [
+          "After the account is deleted, all data linked to it is permanently removed and cannot be restored.",
+        ],
+        warning: {
+          label: "Important:",
+          text: "deleting your account does not automatically cancel an active subscription. If you subscribed through the App Store or Google Play, cancel it separately in that platform’s subscription settings. This prevents further automatic charges.",
+        },
+      },
+    ],
+    merchant: {
+      contacts: "Contacts",
+      email: "Email",
+      phone: "Phone",
+      phoneValue: "+380 99 988 08 36",
+      legal: "Legal information",
+      entity: "ФОП Орловська Станіслава Юріївна",
+      recipientCode: "Recipient code: 3215300426",
+      iban: "IBAN: UA923052990000026002026804139",
+      location: "Location",
+      address: "Україна, 04079, Київ, вул. Тираспольська, 54/490",
+      terms: "Public offer",
+      privacy: "Privacy policy",
+    },
+  },
+  privacyPage: {
+    metaTitle: "Privacy Policy — Jingle Plan",
+    metaDescription: "How Jingle Plan collects, stores and protects personal data of app and website users.",
+    ogLocale: "en_US",
+  },
+  offerPage: {
+    metaTitle: "Public Offer — Jingle Plan",
+    metaDescription: "Terms for buying Jingle Plan+ and joining the creative marathon: payment, access and refunds.",
+    ogLocale: "en_US",
+  },
+  contactsPage: {
+    metaTitle: "Contacts — Jingle Plan",
+    metaDescription: "Email, phone and legal details for Jingle Plan.",
+    ogLocale: "en_US",
   },
 };

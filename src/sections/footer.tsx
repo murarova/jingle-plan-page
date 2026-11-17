@@ -4,6 +4,7 @@ import { Brand } from "@/components/brand";
 import { SITE_NAME } from "@/config/site";
 import { useI18n } from "@/hooks/use-i18n";
 import { useSiteData } from "@/hooks/use-site-data";
+import { contactsPath, offerPath, privacyPath } from "@/routes";
 
 const linkClass = "no-underline hover:text-ink";
 
@@ -21,26 +22,27 @@ export function Footer() {
           </p>
         </div>
         <nav className="flex flex-wrap gap-x-6 gap-y-2" aria-label={SITE_NAME}>
-          {links.privacy[lang] ? (
-            <a
-              href={links.privacy[lang]}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={linkClass}
-              onClick={() => track("click_privacy_policy", { placement: "footer" })}
-            >
-              {t.footer.privacy}
-            </a>
-          ) : null}
-          {links.supportEmail ? (
-            <a
-              href={`mailto:${links.supportEmail}`}
-              className={linkClass}
-              onClick={() => track("click_support_email", { placement: "footer" })}
-            >
-              {t.footer.support}
-            </a>
-          ) : null}
+          <a
+            href={offerPath(lang)}
+            className={linkClass}
+            onClick={() => track("click_public_offer", { placement: "footer" })}
+          >
+            {t.footer.terms}
+          </a>
+          <a
+            href={privacyPath(lang)}
+            className={linkClass}
+            onClick={() => track("click_privacy_policy", { placement: "footer" })}
+          >
+            {t.footer.privacy}
+          </a>
+          <a
+            href={contactsPath(lang)}
+            className={linkClass}
+            onClick={() => track("click_contacts", { placement: "footer" })}
+          >
+            {t.footer.contacts}
+          </a>
           {links.instagram ? (
             <a href={links.instagram} target="_blank" rel="noopener noreferrer" className={linkClass}>
               {t.footer.instagram}

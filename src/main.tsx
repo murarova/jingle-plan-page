@@ -4,7 +4,7 @@ import "@fontsource-variable/nunito";
 import "@/index.css";
 import { App } from "@/App";
 import { DEFAULT_SITE_DATA } from "@/config/defaults";
-import { isLifePath, type SitePage } from "@/routes";
+import { isContactsPath, isLifePath, isOfferPath, isPrivacyPath, isSubscribePath, type SitePage } from "@/routes";
 import { DEFAULT_LANG, isLang, type Lang } from "@/types/lang";
 import type { SiteData } from "@/types/site-data";
 
@@ -22,7 +22,12 @@ function detectLang(): Lang {
 }
 
 function detectPage(): SitePage {
-  return isLifePath(window.location.pathname) ? "life" : "home";
+  if (isContactsPath(window.location.pathname)) return "contacts";
+  if (isOfferPath(window.location.pathname)) return "offer";
+  if (isPrivacyPath(window.location.pathname)) return "privacy";
+  if (isSubscribePath(window.location.pathname)) return "subscribe";
+  if (isLifePath(window.location.pathname)) return "life";
+  return "home";
 }
 
 const path = window.location.pathname;

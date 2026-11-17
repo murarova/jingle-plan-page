@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { track } from "@/analytics/track";
 import { useI18n } from "@/hooks/use-i18n";
-import { homePath, lifePath, type SitePage } from "@/routes";
+import { contactsPath, homePath, lifePath, offerPath, privacyPath, subscribePath, type SitePage } from "@/routes";
 import { LANGS, type Lang } from "@/types/lang";
 
 export function LangSwitch({ page = "home" }: { page?: SitePage }) {
@@ -21,7 +21,7 @@ export function LangSwitch({ page = "home" }: { page?: SitePage }) {
         return (
           <a
             key={code}
-            href={`${page === "life" ? lifePath(code) : homePath(code)}${suffix}`}
+            href={`${page === "life" ? lifePath(code) : page === "subscribe" ? subscribePath(code) : page === "privacy" ? privacyPath(code) : page === "offer" ? offerPath(code) : page === "contacts" ? contactsPath(code) : homePath(code)}${suffix}`}
             hrefLang={code}
             lang={code}
             aria-current={active ? "true" : undefined}

@@ -1,7 +1,7 @@
 import { fillLife, lifeConfig } from "@/config/life";
-import { SITE_NAME } from "@/config/site";
+import { SITE_NAME, YEAR_PASS_AMOUNT, YEAR_PASS_CURRENCY } from "@/config/site";
 import { getDictionary } from "@/i18n";
-import { homePath, lifePath } from "@/routes";
+import { contactsPath, homePath, lifePath, offerPath, privacyPath, subscribePath } from "@/routes";
 import { DEFAULT_LANG, LANGS, type Lang } from "@/types/lang";
 
 function escapeAttr(value: string): string {
@@ -135,6 +135,228 @@ export function buildLifeHead(lang: Lang, siteUrl: string): string {
     otherLocales,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${ogTitle}" />`,
+    `<meta name="twitter:description" content="${description}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
+    `<script type="application/ld+json">${jsonLd.replace(/</g, "\\u003c")}</script>`,
+  ]
+    .filter(Boolean)
+    .join("\n    ");
+}
+
+export function subscribeCanonical(siteUrl: string, lang: Lang): string {
+  return `${siteUrl}${subscribePath(lang)}`;
+}
+
+export function buildSubscribeHead(lang: Lang, siteUrl: string): string {
+  const copy = getDictionary(lang).subscribe.meta;
+  const url = subscribeCanonical(siteUrl, lang);
+  const image = homeOgImage(siteUrl, lang);
+  const title = escapeAttr(copy.title);
+  const description = escapeAttr(copy.description);
+
+  const alternates = LANGS.map(
+    (code) => `<link rel="alternate" hreflang="${code}" href="${subscribeCanonical(siteUrl, code)}" />`,
+  ).join("\n    ");
+
+  const otherLocales = LANGS.filter((code) => code !== lang)
+    .map((code) => `<meta property="og:locale:alternate" content="${getDictionary(code).subscribe.meta.ogLocale}" />`)
+    .join("\n    ");
+
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Jingle Plan+",
+    description: copy.description,
+    brand: { "@type": "Brand", name: SITE_NAME },
+    url,
+    offers: {
+      "@type": "Offer",
+      price: String(YEAR_PASS_AMOUNT),
+      priceCurrency: YEAR_PASS_CURRENCY,
+      url,
+    },
+  });
+
+  return [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${url}" />`,
+    alternates,
+    `<link rel="alternate" hreflang="x-default" href="${subscribeCanonical(siteUrl, DEFAULT_LANG)}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${SITE_NAME}" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:locale" content="${copy.ogLocale}" />`,
+    otherLocales,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${title}" />`,
+    `<meta name="twitter:description" content="${description}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
+    `<script type="application/ld+json">${jsonLd.replace(/</g, "\\u003c")}</script>`,
+  ]
+    .filter(Boolean)
+    .join("\n    ");
+}
+
+export function privacyCanonical(siteUrl: string, lang: Lang): string {
+  return `${siteUrl}${privacyPath(lang)}`;
+}
+
+export function buildPrivacyHead(lang: Lang, siteUrl: string): string {
+  const copy = getDictionary(lang).privacyPage;
+  const url = privacyCanonical(siteUrl, lang);
+  const image = homeOgImage(siteUrl, lang);
+  const title = escapeAttr(copy.metaTitle);
+  const description = escapeAttr(copy.metaDescription);
+
+  const alternates = LANGS.map(
+    (code) => `<link rel="alternate" hreflang="${code}" href="${privacyCanonical(siteUrl, code)}" />`,
+  ).join("\n    ");
+
+  const otherLocales = LANGS.filter((code) => code !== lang)
+    .map((code) => `<meta property="og:locale:alternate" content="${getDictionary(code).privacyPage.ogLocale}" />`)
+    .join("\n    ");
+
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: copy.metaTitle,
+    description: copy.metaDescription,
+    inLanguage: lang,
+    url,
+  });
+
+  return [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${url}" />`,
+    alternates,
+    `<link rel="alternate" hreflang="x-default" href="${privacyCanonical(siteUrl, DEFAULT_LANG)}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${SITE_NAME}" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:locale" content="${copy.ogLocale}" />`,
+    otherLocales,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${title}" />`,
+    `<meta name="twitter:description" content="${description}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
+    `<script type="application/ld+json">${jsonLd.replace(/</g, "\\u003c")}</script>`,
+  ]
+    .filter(Boolean)
+    .join("\n    ");
+}
+
+export function offerCanonical(siteUrl: string, lang: Lang): string {
+  return `${siteUrl}${offerPath(lang)}`;
+}
+
+export function buildOfferHead(lang: Lang, siteUrl: string): string {
+  const copy = getDictionary(lang).offerPage;
+  const url = offerCanonical(siteUrl, lang);
+  const image = homeOgImage(siteUrl, lang);
+  const title = escapeAttr(copy.metaTitle);
+  const description = escapeAttr(copy.metaDescription);
+
+  const alternates = LANGS.map(
+    (code) => `<link rel="alternate" hreflang="${code}" href="${offerCanonical(siteUrl, code)}" />`,
+  ).join("\n    ");
+
+  const otherLocales = LANGS.filter((code) => code !== lang)
+    .map((code) => `<meta property="og:locale:alternate" content="${getDictionary(code).offerPage.ogLocale}" />`)
+    .join("\n    ");
+
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: copy.metaTitle,
+    description: copy.metaDescription,
+    inLanguage: lang,
+    url,
+  });
+
+  return [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${url}" />`,
+    alternates,
+    `<link rel="alternate" hreflang="x-default" href="${offerCanonical(siteUrl, DEFAULT_LANG)}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${SITE_NAME}" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:locale" content="${copy.ogLocale}" />`,
+    otherLocales,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${title}" />`,
+    `<meta name="twitter:description" content="${description}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
+    `<script type="application/ld+json">${jsonLd.replace(/</g, "\\u003c")}</script>`,
+  ]
+    .filter(Boolean)
+    .join("\n    ");
+}
+
+export function contactsCanonical(siteUrl: string, lang: Lang): string {
+  return `${siteUrl}${contactsPath(lang)}`;
+}
+
+export function buildContactsHead(lang: Lang, siteUrl: string): string {
+  const copy = getDictionary(lang).contactsPage;
+  const url = contactsCanonical(siteUrl, lang);
+  const image = homeOgImage(siteUrl, lang);
+  const title = escapeAttr(copy.metaTitle);
+  const description = escapeAttr(copy.metaDescription);
+
+  const alternates = LANGS.map(
+    (code) => `<link rel="alternate" hreflang="${code}" href="${contactsCanonical(siteUrl, code)}" />`,
+  ).join("\n    ");
+
+  const otherLocales = LANGS.filter((code) => code !== lang)
+    .map((code) => `<meta property="og:locale:alternate" content="${getDictionary(code).contactsPage.ogLocale}" />`)
+    .join("\n    ");
+
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: copy.metaTitle,
+    description: copy.metaDescription,
+    inLanguage: lang,
+    url,
+  });
+
+  return [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<link rel="canonical" href="${url}" />`,
+    alternates,
+    `<link rel="alternate" hreflang="x-default" href="${contactsCanonical(siteUrl, DEFAULT_LANG)}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${SITE_NAME}" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:locale" content="${copy.ogLocale}" />`,
+    otherLocales,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${title}" />`,
     `<meta name="twitter:description" content="${description}" />`,
     `<meta name="twitter:image" content="${image}" />`,
     `<script type="application/ld+json">${jsonLd.replace(/</g, "\\u003c")}</script>`,

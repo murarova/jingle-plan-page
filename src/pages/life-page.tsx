@@ -60,7 +60,7 @@ function LifeHero() {
             <p className="mb-3 max-w-[540px] text-[clamp(17px,4.2vw,21px)] text-white/95">{fillLife(copy.lead, lang)}</p>
             <p className="mb-6 max-w-[520px] text-[15px] text-white/85">{copy.mood}</p>
             <RegisterButton location="hero" />
-            <p className="mt-3 text-[13px] text-white/90">{fillLife(copy.priceNote, lang)}</p>
+            <p className="mt-3 text-base font-bold text-white/90">{fillLife(copy.priceNote, lang)}</p>
           </div>
           <div className="mx-auto w-full max-w-[260px] lg:mx-0 lg:max-w-[440px] lg:justify-self-start" aria-hidden="true">
             <img src="/tree.svg" alt="" width={180} height={175} className="h-auto w-full" />
