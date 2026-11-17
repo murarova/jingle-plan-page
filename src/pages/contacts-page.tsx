@@ -45,7 +45,7 @@ export function ContactsPage() {
                   {copy.legal}
                 </h2>
                 <div className="grid gap-5">
-                  <Contact icon={<PersonIcon />} label={copy.entity} value={[copy.recipientCode, copy.iban]} />
+                  <Contact icon={<PersonIcon />} label={copy.entity} value={copy.recipientCode} />
                   <Contact icon={<PinIcon />} label={copy.location} value={copy.address} />
                 </div>
               </section>
@@ -73,7 +73,6 @@ function Contact({
 }) {
   const valueClass = "mt-0.5 text-pretty text-muted [overflow-wrap:anywhere]";
   const lines = Array.isArray(value) ? value : [value];
-  const lineClass = (line: string) => (line.length > 28 ? `${valueClass} text-[13px] md:text-base` : valueClass);
   return (
     <div className="flex items-start gap-3">
       <span className="mt-0.5 shrink-0 text-leaf" aria-hidden="true">
@@ -83,11 +82,11 @@ function Contact({
         <p className="font-bold text-ink">{label}</p>
         {lines.map((line) =>
           href ? (
-            <a key={line} href={href} className={`${lineClass(line)} no-underline hover:text-ink`} onClick={onClick}>
+            <a key={line} href={href} className={`${valueClass} no-underline hover:text-ink`} onClick={onClick}>
               {line}
             </a>
           ) : (
-            <p key={line} className={lineClass(line)}>
+            <p key={line} className={valueClass}>
               {line}
             </p>
           ),
