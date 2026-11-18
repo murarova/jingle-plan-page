@@ -26,7 +26,7 @@ export const en: Dictionary = {
     titleHighlight: "review your year",
     titleAfter: " and plan the next one",
     lead: "Your Christmas advent calendar with tasks for reflection, planning and inspiration.",
-    note: "Free to install\nFull access with Jingle Plan+, {price} per year",
+    note: "Free to install\nFull access with Jingle Plan+, 599.99 UAH per year",
     subscribeBrand: "Jingle Plan+",
     subscribeCta: "Buy subscription",
   },
@@ -309,7 +309,7 @@ export const en: Dictionary = {
     planTitle: "Yearly subscription",
     price: "599.99 UAH",
     priceNote: "12 months of access",
-    priceMonth: "That’s 50 UAH a month",
+    priceMonth: "One payment",
     includes: [
       "Full access to the app",
       "Every advent calendar task",
@@ -324,10 +324,20 @@ export const en: Dictionary = {
     consentMid: " and I have read the ",
     privacy: "Privacy Policy",
     pay: "Pay 599.99 UAH",
-    payment: {
-      secure: "Secure payment via",
+    paying: "Opening payment…",
+    emailInvalid: "Enter a valid email",
+    consentRequired: "Accept the public offer and the privacy policy to continue",
+    payError: "Could not open the payment page. Try again.",
+    paymentMarks: "Payment methods",
+    result: {
+      metaTitle: "Payment — Jingle Plan",
+      metaDescription:
+        "If the payment succeeded, open Jingle Plan with the email you entered. Access appears after the payment is confirmed.",
+      ogLocale: "en_US",
+      title: "Thank you",
+      body: "If the payment succeeded, open Jingle Plan with the email you entered. Access appears after the payment is confirmed.",
+      home: "Home",
     },
-    secure: "Secure payment through the payment provider",
     activateTitle: "How do I activate the subscription?",
     steps: [
       "Enter your account email",

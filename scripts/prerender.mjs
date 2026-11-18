@@ -7,7 +7,7 @@ const dist = resolve(root, "dist");
 const ssrDir = resolve(root, "dist-ssr");
 const siteUrl = (process.env.SITE_URL ?? "https://jingle-plan.app").replace(/\/$/, "");
 
-const { render, buildHead, buildLifeHead, buildContactsHead, buildOfferHead, buildPrivacyHead, buildSubscribeHead, LANGS, homePath, lifePath, contactsPath, offerPath, privacyPath, subscribePath } = await import(
+const { render, buildHead, buildLifeHead, buildContactsHead, buildOfferHead, buildPrivacyHead, buildSubscribeHead, buildSubscribeResultHead, LANGS, homePath, lifePath, contactsPath, offerPath, privacyPath, subscribePath, subscribeResultPath } = await import(
   pathToFileURL(resolve(ssrDir, "entry-server.js")).href
 );
 
@@ -62,6 +62,19 @@ for (const lang of LANGS) {
     .replace("%LANG%", lang)
     .replace("<!--head-->", buildSubscribeHead(lang, siteUrl))
     .replace("<!--app-->", render(lang, data, "subscribe"))
+    .replace("<!--data-->", dataScript);
+  const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "index.html"), html);
+  console.log(`prerender: ${route}`);
+}
+
+for (const lang of LANGS) {
+  const route = subscribeResultPath(lang);
+  const html = template
+    .replace("%LANG%", lang)
+    .replace("<!--head-->", buildSubscribeResultHead(lang, siteUrl))
+    .replace("<!--app-->", render(lang, data, "subscribe-result"))
     .replace("<!--data-->", dataScript);
   const dir = resolve(dist, route.replace(/^\/|\/$/g, ""));
   mkdirSync(dir, { recursive: true });

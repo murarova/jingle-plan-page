@@ -1,7 +1,7 @@
 import { fillLife, lifeConfig } from "@/config/life";
 import { SITE_NAME, YEAR_PASS_AMOUNT, YEAR_PASS_CURRENCY } from "@/config/site";
 import { getDictionary } from "@/i18n";
-import { contactsPath, homePath, lifePath, offerPath, privacyPath, subscribePath } from "@/routes";
+import { contactsPath, homePath, lifePath, offerPath, privacyPath, subscribePath, subscribeResultPath } from "@/routes";
 import { DEFAULT_LANG, LANGS, type Lang } from "@/types/lang";
 
 function escapeAttr(value: string): string {
@@ -201,6 +201,30 @@ export function buildSubscribeHead(lang: Lang, siteUrl: string): string {
   ]
     .filter(Boolean)
     .join("\n    ");
+}
+
+export function subscribeResultCanonical(siteUrl: string, lang: Lang): string {
+  return `${siteUrl}${subscribeResultPath(lang)}`;
+}
+
+export function buildSubscribeResultHead(lang: Lang, siteUrl: string): string {
+  const copy = getDictionary(lang).subscribe.result;
+  const url = subscribeResultCanonical(siteUrl, lang);
+  const title = escapeAttr(copy.metaTitle);
+  const description = escapeAttr(copy.metaDescription);
+
+  return [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${description}" />`,
+    `<meta name="robots" content="noindex" />`,
+    `<link rel="canonical" href="${url}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${SITE_NAME}" />`,
+    `<meta property="og:title" content="${title}" />`,
+    `<meta property="og:description" content="${description}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:locale" content="${copy.ogLocale}" />`,
+  ].join("\n    ");
 }
 
 export function privacyCanonical(siteUrl: string, lang: Lang): string {

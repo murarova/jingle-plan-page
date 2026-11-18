@@ -4,7 +4,7 @@ import "@fontsource-variable/nunito";
 import "@/index.css";
 import { App } from "@/App";
 import { DEFAULT_SITE_DATA } from "@/config/defaults";
-import { isContactsPath, isLifePath, isOfferPath, isPrivacyPath, isSubscribePath, type SitePage } from "@/routes";
+import { isContactsPath, isLifePath, isOfferPath, isPrivacyPath, isSubscribePath, isSubscribeResultPath, type SitePage } from "@/routes";
 import { DEFAULT_LANG, isLang, type Lang } from "@/types/lang";
 import type { SiteData } from "@/types/site-data";
 
@@ -25,6 +25,7 @@ function detectPage(): SitePage {
   if (isContactsPath(window.location.pathname)) return "contacts";
   if (isOfferPath(window.location.pathname)) return "offer";
   if (isPrivacyPath(window.location.pathname)) return "privacy";
+  if (isSubscribeResultPath(window.location.pathname)) return "subscribe-result";
   if (isSubscribePath(window.location.pathname)) return "subscribe";
   if (isLifePath(window.location.pathname)) return "life";
   return "home";
