@@ -9,6 +9,7 @@ import { LifePage } from "@/pages/life-page";
 import { OfferPage } from "@/pages/offer-page";
 import { PrivacyPage } from "@/pages/privacy-page";
 import { SubscribePage } from "@/pages/subscribe-page";
+import { SubscribeResultPage } from "@/pages/subscribe-result-page";
 import type { SitePage } from "@/routes";
 import type { Lang } from "@/types/lang";
 import type { SiteData } from "@/types/site-data";
@@ -25,6 +26,8 @@ export function App({ lang, data, page }: { lang: Lang; data: SiteData; page: Si
           <LifePage />
         ) : page === "subscribe" ? (
           <SubscribePage />
+        ) : page === "subscribe-result" ? (
+          <SubscribeResultPage />
         ) : page === "privacy" ? (
           <PrivacyPage />
         ) : page === "offer" ? (

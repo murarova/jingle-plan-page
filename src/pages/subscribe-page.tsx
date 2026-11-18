@@ -1,7 +1,11 @@
 import { useState, type FormEvent, type ReactNode } from "react";
-import liqpayLogo from "@/assets/liqpay-logo.svg";
+import applePay from "@/assets/payments/apple-pay.svg";
+import googlePay from "@/assets/payments/google-pay.svg";
+import mastercard from "@/assets/payments/mastercard.svg";
+import visa from "@/assets/payments/visa.svg";
 import { Reveal } from "@/components/reveal";
 import { ShortHeader } from "@/components/short-header";
+import { readCheckoutPayload, submitPaymentForm, WAYFORPAY_CHECKOUT_URL } from "@/config/wayforpay";
 import { useI18n } from "@/hooks/use-i18n";
 import { offerPath, privacyPath } from "@/routes";
 import { Footer } from "@/sections/footer";
@@ -31,9 +35,43 @@ function Offer() {
   const copy = t.subscribe;
   const terms = offerPath(lang);
   const privacy = privacyPath(lang);
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+  const [accepted, setAccepted] = useState(false);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (pending) return;
+    const form = event.currentTarget;
+    const email = String(new FormData(form).get("email") ?? "").trim();
+    const consent = form.elements.namedItem("consent");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError(copy.emailInvalid);
+      return;
+    }
+    if (!(consent instanceof HTMLInputElement) || !consent.checked) {
+      setError(copy.consentRequired);
+      return;
+    }
+    setError(null);
+    setPending(true);
+    try {
+      const response = await fetch(WAYFORPAY_CHECKOUT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const payload = readCheckoutPayload(await response.json().catch(() => null));
+      if (!response.ok || !payload) {
+        setError(copy.payError);
+        setPending(false);
+        return;
+      }
+      submitPaymentForm(payload.action, payload.fields);
+    } catch {
+      setError(copy.payError);
+      setPending(false);
+    }
   };
 
   return (
@@ -76,6 +114,7 @@ function Offer() {
                     type="email"
                     inputMode="email"
                     autoComplete="email"
+                    required
                     placeholder={copy.emailPlaceholder}
                     className="min-h-12 rounded-2xl border border-ivory-line bg-ivory-page px-4 text-[16px] font-semibold outline-none placeholder:font-medium placeholder:text-muted/70 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-candy"
                   />
@@ -87,6 +126,9 @@ function Offer() {
                   <input
                     type="checkbox"
                     name="consent"
+                    required
+                    checked={accepted}
+                    onChange={(event) => setAccepted(event.target.checked)}
                     className="mt-1 h-4 w-4 accent-leaf-deep"
                   />
                   <span>
@@ -98,12 +140,18 @@ function Offer() {
                 </label>
                 <button
                   type="submit"
-                  className="btn-lift mt-6 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-candy px-7 text-[17px] font-bold text-white focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-candy"
+                  disabled={!accepted || pending}
+                  className="btn-lift mt-6 inline-flex min-h-14 w-full items-center justify-center rounded-full bg-candy px-7 text-[17px] font-bold text-white focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-candy disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {copy.pay}
+                  {pending ? copy.paying : copy.pay}
                 </button>
+                <PaymentMarks label={copy.paymentMarks} />
+                {error ? (
+                  <p className="mt-3 text-[14px] font-bold text-candy" role="alert">
+                    {error}
+                  </p>
+                ) : null}
               </form>
-              <PaymentNotice />
             </div>
           </div>
         </Reveal>
@@ -249,24 +297,21 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-function PaymentNotice() {
-  const { t } = useI18n();
+const paymentMarks = [
+  { src: applePay, name: "Apple Pay", className: "h-6" },
+  { src: googlePay, name: "Google Pay", className: "h-6" },
+  { src: visa, name: "Visa", className: "h-[18px]" },
+  { src: mastercard, name: "Mastercard", className: "h-[26px]" },
+] as const;
 
+function PaymentMarks({ label }: { label: string }) {
   return (
-    <p className="mt-5 inline-flex items-center justify-center gap-2 text-[14px] text-ink">
-      <svg
-        viewBox="0 0 24 24"
-        className="h-5 w-5 text-leaf"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="9" />
-        <path d="m8 12.5 2.5 2.5 5-5.5" />
-      </svg>
-      {t.subscribe.payment.secure}
-      <img src={liqpayLogo} alt="LiqPay" className="h-5 w-auto" />
-    </p>
+    <ul className="mt-6 flex list-none items-center justify-center gap-6 px-2 py-0" aria-label={label}>
+      {paymentMarks.map((mark) => (
+        <li key={mark.name} className="flex items-center">
+          <img src={mark.src} alt={mark.name} className={`${mark.className} w-auto`} />
+        </li>
+      ))}
+    </ul>
   );
 }

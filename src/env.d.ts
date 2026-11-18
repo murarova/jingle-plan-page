@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_GA_ID?: string;
   readonly VITE_META_PIXEL_ID?: string;
+  readonly VITE_WAYFORPAY_CHECKOUT_URL?: string;
 }
 
 interface ImportMeta {
