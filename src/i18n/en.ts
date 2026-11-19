@@ -332,10 +332,18 @@ export const en: Dictionary = {
     result: {
       metaTitle: "Payment — Jingle Plan",
       metaDescription:
-        "If the payment succeeded, open Jingle Plan with the email you entered. Access appears after the payment is confirmed.",
+        "After payment we confirm the charge and open a year of access for the email you entered.",
       ogLocale: "en_US",
-      title: "Thank you",
-      body: "If the payment succeeded, open Jingle Plan with the email you entered. Access appears after the payment is confirmed.",
+      checkingTitle: "Checking the payment",
+      checkingBody: "Wait a few seconds. We are processing the payment.",
+      approvedTitle: "Payment confirmed",
+      approvedBody:
+        "A year of access will open within a few minutes. Open Jingle Plan and sign in or register with {email}.",
+      declinedTitle: "Payment was not completed",
+      declinedBody: "The money was not charged. Try to pay again.",
+      unconfirmedTitle: "We could not confirm the payment",
+      unconfirmedBody:
+        "The payment may still be processing. Check the notification from your bank.\nIf the money has already been charged, open Jingle Plan and sign in or register using the email you entered during payment.",
       home: "Home",
     },
     activateTitle: "How do I activate the subscription?",

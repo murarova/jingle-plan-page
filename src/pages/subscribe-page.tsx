@@ -5,7 +5,7 @@ import mastercard from "@/assets/payments/mastercard.svg";
 import visa from "@/assets/payments/visa.svg";
 import { Reveal } from "@/components/reveal";
 import { ShortHeader } from "@/components/short-header";
-import { readCheckoutPayload, submitPaymentForm, WAYFORPAY_CHECKOUT_URL } from "@/config/wayforpay";
+import { readCheckoutPayload, rememberCheckout, submitPaymentForm, WAYFORPAY_CHECKOUT_URL } from "@/config/wayforpay";
 import { useI18n } from "@/hooks/use-i18n";
 import { offerPath, privacyPath } from "@/routes";
 import { Footer } from "@/sections/footer";
@@ -67,6 +67,7 @@ function Offer() {
         setPending(false);
         return;
       }
+      rememberCheckout(payload.fields);
       submitPaymentForm(payload.action, payload.fields);
     } catch {
       setError(copy.payError);
