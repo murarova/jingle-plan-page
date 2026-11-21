@@ -3,6 +3,7 @@ import applePay from "@/assets/payments/apple-pay.svg";
 import googlePay from "@/assets/payments/google-pay.svg";
 import mastercard from "@/assets/payments/mastercard.svg";
 import visa from "@/assets/payments/visa.svg";
+import { track } from "@/analytics/track";
 import { Reveal } from "@/components/reveal";
 import { ShortHeader } from "@/components/short-header";
 import { readCheckoutPayload, rememberCheckout, submitPaymentForm, WAYFORPAY_CHECKOUT_URL } from "@/config/wayforpay";
@@ -47,10 +48,12 @@ function Offer() {
     const consent = form.elements.namedItem("consent");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError(copy.emailInvalid);
+      track("subscribe_checkout_failed", { reason: "email" });
       return;
     }
     if (!(consent instanceof HTMLInputElement) || !consent.checked) {
       setError(copy.consentRequired);
+      track("subscribe_checkout_failed", { reason: "consent" });
       return;
     }
     setError(null);
@@ -65,13 +68,16 @@ function Offer() {
       if (!response.ok || !payload) {
         setError(copy.payError);
         setPending(false);
+        track("subscribe_checkout_failed", { reason: "checkout" });
         return;
       }
       rememberCheckout(payload.fields);
+      track("subscribe_checkout_started");
       submitPaymentForm(payload.action, payload.fields);
     } catch {
       setError(copy.payError);
       setPending(false);
+      track("subscribe_checkout_failed", { reason: "checkout" });
     }
   };
 

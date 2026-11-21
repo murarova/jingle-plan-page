@@ -20,7 +20,10 @@ export type AnalyticsEvent =
   | "life_promo_click"
   | "life_register_click"
   | "life_contact_click"
-  | "click_buy_subscription";
+  | "click_buy_subscription"
+  | "subscribe_checkout_started"
+  | "subscribe_checkout_failed"
+  | "subscribe_payment_result";
 
 type EventParams = Record<string, string | number | boolean>;
 
