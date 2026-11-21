@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import hourglass from "@/assets/result-page/loading-hourglass.svg";
 import unconfirmedGift from "@/assets/result-page/payment-unconfirmed-gift.svg";
 import successGift from "@/assets/result-page/success-gift.svg";
+import { track } from "@/analytics/track";
 import { Spinner } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
 import { ShortHeader } from "@/components/short-header";
@@ -95,6 +96,7 @@ export function SubscribeResultPage() {
     const remembered = readRememberedCheckout();
     if (!remembered) {
       setPhase("unknown");
+      track("subscribe_payment_result", { status: "unknown" });
       return;
     }
     setSaved(remembered);
@@ -110,14 +112,17 @@ export function SubscribeResultPage() {
       if (stopped) return;
       if (status === "approved") {
         setPhase("approved");
+        track("subscribe_payment_result", { status: "approved" });
         return;
       }
       if (status === "declined" || status === "refunded") {
         setPhase("declined");
+        track("subscribe_payment_result", { status });
         return;
       }
       if (attempts >= POLL_LIMIT) {
         setPhase("waiting");
+        track("subscribe_payment_result", { status: "waiting" });
         return;
       }
       timer = window.setTimeout(() => {
